@@ -1,6 +1,6 @@
 # Sites Monitoring Utility
 
-This script monitors all sites listed in a txt file by checking their status (online/offline) and registration expiration date of domain name.
+This script monitors all sites listed in a txt file by checking their status (online/offline) and registration expiration dates of their domain names.
 
 # Quickstart
 
