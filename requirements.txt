@@ -1,0 +1,4 @@
+python_whois==0.6.5
+requests==2.18.1
+python_dateutil==2.6.1
+whois==0.7
