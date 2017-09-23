@@ -10,11 +10,11 @@ def load_urls4check(path):
 
 def is_server_respond_with_200(url):
     try:
-        if requests.get(url).status_code == 200:
+        if requests.get(url).ok:
             return True
         else:
             return False
-    except:
+    except requests.ConnectionError:
         return False
 
 
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     for idx, site in enumerate(load_urls4check(sys.argv[1]), 1):
         print("{}) {}".format(idx, site))
         if is_server_respond_with_200(site):
-            print("Status: ONLINE (200)")
+            print("Status: OK (ONLINE)")
         else:
             print("Status: OFFLINE")
         minimum_date = (datetime.datetime.now() + relativedelta(months=+1))
