@@ -16,6 +16,26 @@ $ python check_sites_health.py <path to file>
 
 ```
 
+Output data example:
+
+```#!bash
+
+1) https://google.com
+Status: OK (ONLINE)
+Domain name is paid for at least 1 month ahead
+
+2) https://verisign.com
+Status: OK (ONLINE)
+Domain name is paid for at least 1 month ahead
+
+3) https://aiiqoiqwdasdasd.com
+Status: OFFLINE
+Domain name was not found in registry
+......
+
+```
+
+
 # Project Goals
 
 The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)
