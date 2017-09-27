@@ -1,5 +1,6 @@
 import sys
-import whois 
+import whois
+from whois.parser import PywhoisError
 import requests
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -35,7 +36,12 @@ if __name__ == '__main__':
         else:
             print("Status: OFFLINE")
         minimum_date = (datetime.datetime.now() + relativedelta(months=+1))
-        if get_domain_expiration_date(site) > minimum_date:
+        try:
+            expiration_date = get_domain_expiration_date(site)
+        except PywhoisError:
+            print("Domain name was not found in registry\n")
+            continue
+        if  expiration_date > minimum_date:
             print("Domain name is paid for at least 1 month ahead\n")
         else:
             print("Caution! Domain name will expire less in 1 month\n")
