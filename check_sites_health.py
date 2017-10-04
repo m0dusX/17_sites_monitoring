@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 
 
 def load_urls4check(path):
-    with open(path, 'r', encoding="UTF-8") as site_list:
+    with open(path, 'r', encoding='UTF-8') as site_list:
         return site_list.read().splitlines()
 
 
@@ -39,19 +39,19 @@ if __name__ == '__main__':
     args = parser.parse_args()
     site_list = args.path_to_txt
     for idx, site in enumerate(load_urls4check(site_list), 1):
-        print("{}) {}".format(idx, site))
+        print('{}) {}'.format(idx, site))
         if is_server_respond_with_200(site):
-            print("Status: OK (ONLINE)")
+            print('Status: OK (ONLINE)')
         else:
-            print("Status: OFFLINE")
+            print('Status: OFFLINE')
         minimum_date = (datetime.datetime.now() + relativedelta(months=+1))
         try:
             expiration_date = get_domain_expiration_date(site)
         except PywhoisError:
-            print("Domain name was not found in registry\n")
+            print('Domain name was not found in registry\n')
             continue
         if expiration_date > minimum_date:
-            print("Domain name is paid for at least 1 month ahead\n")
+            print('Domain name is paid for at least 1 month ahead\n')
         else:
-            print("Caution! Domain name will expire less in 1 month\n")
+            print('Caution! Domain name will expire less in 1 month\n')
     sys.exit()
