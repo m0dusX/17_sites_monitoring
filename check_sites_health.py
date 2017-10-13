@@ -1,10 +1,8 @@
-import sys
 import argparse
 import datetime
 import requests
-import whois
-from whois.parser import PywhoisError
 from dateutil.relativedelta import relativedelta
+import whois
 
 
 def load_urls4check(path):
@@ -47,11 +45,10 @@ if __name__ == '__main__':
         minimum_date = (datetime.datetime.now() + relativedelta(months=+1))
         try:
             expiration_date = get_domain_expiration_date(site)
-        except PywhoisError:
+        except whois.parser.PywhoisError:
             print('Domain name was not found in registry\n')
             continue
         if expiration_date > minimum_date:
             print('Domain name is paid for at least 1 month ahead\n')
         else:
             print('Caution! Domain name will expire less in 1 month\n')
-    sys.exit()
